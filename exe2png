@@ -6,13 +6,13 @@ export YELLOW='\033[1;33m'
 export RESETCOLOR='\033[1;00m'
 
 dep_test() {
-test_convert=$(which convert 2>/dev/null)
+# test_convert=$(which convert 2>/dev/null)
 test_wrestool=$(which wrestool 2>/dev/null)
-if [ -z $test_convert ]
-    then
-        echo -en "${RED}\n  !!!You must install imagemagick to continue!!!\n\n$RESETCOLOR" >&2
-        exit 1
-fi
+# if [ -z $test_convert ]
+#     then
+#         echo -en "${RED}\n  !!!You must install imagemagick to continue!!!\n\n$RESETCOLOR" >&2
+#         exit 1
+# fi
 if [ -z $test_wrestool ]
     then
         echo -en "${RED}\n  !!!You must install icoutils to continue!!!\n\n$RESETCOLOR" >&2
@@ -38,7 +38,8 @@ if ! [ -z $(ls *.ico 2>/dev/null|head -1) ]
         (IFS=$'\n' ; for i in $(ls *.ico 2>/dev/null)
                         do
                         echo -en "${GREEN}Found ${RED}"$i" ${GREEN}and converting to PNG...\n$RESETCOLOR" >&2
-                        convert "$i" $(echo "$i"|cut -d'.' -f1).png 2>/dev/null
+                        icotool -x --output=./ "$i" 2>/dev/null
+                        #convert "$i" $(echo "$i"|cut -d'.' -f1).png 2>/dev/null
                     done)
         echo -en "${RED}$(ls *.png 2>/dev/null)\n$RESETCOLOR" >&2
         echo -en "${YELLOW}CLEANUP...\n"
