@@ -4,7 +4,7 @@
 ```
 * PNG icon generator from EXE files
 ```
-## Dependences:
+## Dependencies:
 ```
 imagemagick
 icoutils
